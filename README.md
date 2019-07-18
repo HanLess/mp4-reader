@@ -6,4 +6,4 @@
 
 ## 用法
 
-### 下载项目后，在 public 文件中有 index.html，直接用浏览器打开就可以
+### 下载项目后，在 public 文件中有 index.html，直接用浏览器（chrome）打开就可以
