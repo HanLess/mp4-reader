@@ -27,6 +27,16 @@ var resolveObj = function (boxObj,index = 1) {
             hasChild = true
             let cbox = resolveObj(boxObj[key],index)
             box.appendChild(cbox)
+        } else if (Object.prototype.toString.call(boxObj[key]) == "[object Array]") {
+            let temp = ''
+            boxObj[key].forEach(function(val){
+                if (typeof val == 'object') {
+                    temp += JSON.stringify(val)
+                } else {
+                    temp += val
+                }
+            })
+            props[key] = temp
         } else {
             if (type == 'mdat' && key == 'data') {
                 continue;
@@ -97,13 +107,15 @@ var init = function (arrayBuffer) {
 
         fragment.appendChild(box)
     }
-    document.getElementById('root').innerHTML = ''
     document.getElementById('root').appendChild(fragment)
     bindEvent()
 }
 
 export default function () {
     document.getElementById('reader-btn').addEventListener('click',function(){
+        document.getElementById('root').innerHTML = ''
+        document.getElementById('content').innerHTML = ''
+
         var buffer = null;
         let source = document.getElementById('source').files[0]
         let sourceUrl = document.getElementById('sourceUrl').value

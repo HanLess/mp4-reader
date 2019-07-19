@@ -4,6 +4,20 @@
   (global = global || self, global.mp4Reader = factory());
 }(this, function () { 'use strict';
 
+  function _typeof(obj) {
+    if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") {
+      _typeof = function (obj) {
+        return typeof obj;
+      };
+    } else {
+      _typeof = function (obj) {
+        return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;
+      };
+    }
+
+    return _typeof(obj);
+  }
+
   function _classCallCheck(instance, Constructor) {
     if (!(instance instanceof Constructor)) {
       throw new TypeError("Cannot call a class as a function");
@@ -1027,6 +1041,16 @@
         hasChild = true;
         var cbox = resolveObj(boxObj[key], index);
         box.appendChild(cbox);
+      } else if (Object.prototype.toString.call(boxObj[key]) == "[object Array]") {
+        var temp = '';
+        boxObj[key].forEach(function (val) {
+          if (_typeof(val) == 'object') {
+            temp += JSON.stringify(val);
+          } else {
+            temp += val;
+          }
+        });
+        props[key] = temp;
       } else {
         if (type == 'mdat' && key == 'data') {
           continue;
