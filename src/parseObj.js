@@ -97,7 +97,7 @@ var init = function (arrayBuffer) {
 
         fragment.appendChild(box)
     }
-
+    document.getElementById('root').innerHTML = ''
     document.getElementById('root').appendChild(fragment)
     bindEvent()
 }
