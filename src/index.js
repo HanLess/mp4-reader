@@ -1,3 +1,4 @@
 export default {
-    test: 'sdaklfjlka'
+    test: 'sdaklfjlka',
+    name : 'asdjfkl'
 }
